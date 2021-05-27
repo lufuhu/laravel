@@ -2,42 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'account',
+        'phone',
+        'mail',
+        'openid',
+        'unionid',
+        'nickname',
+        'avatarurl',
+        'gender',
+        'identity',
+        'status',
+        'session_key',
+        'keyword',
+        'last_login_time',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public static $EnumStatus = [0 => '正常', 1 => '禁止登录', 2 => '待审核'];
+    public static $EnumGender = [0 => '男', 1 => '女', 2 => '未知'];
+    public static $EnumType = [0 => '用户', 1 => '助手'];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }

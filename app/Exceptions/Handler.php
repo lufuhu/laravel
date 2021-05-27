@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if ($request->header('from') == 'wx') {
+        if (true) {
             $code = $e->getCode();
             if (!$code) {
                 $fe = FlattenException::create($e);
